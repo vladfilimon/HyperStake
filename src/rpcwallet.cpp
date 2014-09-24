@@ -892,11 +892,10 @@ Value movecmd(const Array& params, bool fHelp)
 
     int64 nNow = GetAdjustedTime();
 	
-	// double check balance
-	int64 creditdebit = walletdb.GetAccountCreditDebit(strFrom);
-	
+	int64 nBalance = GetAccountBalance(strFrom, 1);
+
 	//no moving balances with less than or equal to 0
-	if(creditdebit <= 0)
+	if(nBalance <= 0)
 		return "Not enough balance";
 	
     // Debit
