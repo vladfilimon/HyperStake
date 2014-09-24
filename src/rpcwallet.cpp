@@ -891,7 +891,14 @@ Value movecmd(const Array& params, bool fHelp)
         throw JSONRPCError(RPC_DATABASE_ERROR, "database error");
 
     int64 nNow = GetAdjustedTime();
-
+	
+	// double check balance
+	int64 creditdebit = walletdb.GetAccountCreditDebit(strFrom);
+	
+	//no moving balances with less than or equal to 0
+	if(creditdebit <= 0)
+		return "Not enough balance";
+	
     // Debit
     CAccountingEntry debit;
     debit.nOrderPos = pwalletMain->IncOrderPosNext(&walletdb);
