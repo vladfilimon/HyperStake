@@ -1155,15 +1155,15 @@ boost::filesystem::path GetPidFile()
     return pathPidFile;
 }
 
-void CreatePidFile(const boost::filesystem::path &path, pid_t pid)
-{
-    FILE* file = fopen(path.string().c_str(), "w");
-    if (file)
-    {
-        fprintf(file, "%d\n", pid);
-        fclose(file);
-    }
-}
+//void CreatePidFile(const boost::filesystem::path &path, pid_t pid)
+//{
+//    FILE* file = fopen(path.string().c_str(), "w");
+//    if (file)
+//    {
+//        fprintf(file, "%d\n", pid);
+//        fclose(file);
+//    }
+//}
 
 bool RenameOver(boost::filesystem::path src, boost::filesystem::path dest)
 {

@@ -20,7 +20,7 @@
 #ifndef WIN32
 #include <signal.h>
 #endif
-
+//typedef int pid_t; /* define for Windows compatibility */
 using namespace std;
 using namespace boost;
 
@@ -388,8 +388,12 @@ bool AppInit2()
         }
         if (pid > 0)
         {
-            CreatePidFile(GetPidFile(), pid);
-            return true;
+            FILE* file = fopen(GetPidFile().string().c_str(), "w");
+            if (file)
+            {
+                fprintf(file, "%d\n", pid);
+                fclose(file);
+            }
         }
 
         pid_t sid = setsid();
