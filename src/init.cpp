@@ -20,7 +20,10 @@
 #ifndef WIN32
 #include <signal.h>
 #endif
-//typedef int pid_t; /* define for Windows compatibility */
+
+#ifndef WIN64
+typedef int pid_t; /* define for Windows compatibility */
+#endif
 using namespace std;
 using namespace boost;
 
