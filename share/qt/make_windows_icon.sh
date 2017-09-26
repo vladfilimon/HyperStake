@@ -14,4 +14,4 @@ convert ${ICON_SRC} -resize 16x16 hyperstake-16.png
 convert ${ICON_SRC} -resize 32x32 hyperstake-32.png
 convert ${ICON_SRC} -resize 48x48 hyperstake-48.png
 convert hyperstake-16.png hyperstake-32.png hyperstake-48.png ${ICON_DST}
-rm bitcoin-16.png bitcoin-32.png bitcoin-48.png
+rm hyperstake-16.png hyperstake-32.png hyperstake-48.png
