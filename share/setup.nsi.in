@@ -6,11 +6,11 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION @CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@
-!define COMPANY "HyperStake Core project"
-!define URL https://www.hyperstake.io
+!define COMPANY "Hyperstake project"
+!define URL http://www.hyperstake.com/
 
 # MUI Symbol Definitions
-!define MUI_ICON "@abs_top_srcdir@/share/pixmaps/hyperstake.ico"
+!define MUI_ICON "@abs_top_srcdir@/share/pixmaps/bitcoin.ico"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "@abs_top_srcdir@/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
@@ -50,16 +50,16 @@ Var StartMenuGroup
 # Installer attributes
 OutFile @abs_top_srcdir@/hyperstake-${VERSION}-win@WINDOWS_BITS@-setup.exe
 !if "@WINDOWS_BITS@" == "64"
-InstallDir $PROGRAMFILES64\hyperstake
+InstallDir $PROGRAMFILES64\Hyperstake
 !else
-InstallDir $PROGRAMFILES\hyperstake
+InstallDir $PROGRAMFILES\Hyperstake
 !endif
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
 VIProductVersion ${VERSION}.@CLIENT_VERSION_BUILD@
-VIAddVersionKey ProductName "HyperStake Core"
+VIAddVersionKey ProductName "HyperStake Client"
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
@@ -77,14 +77,13 @@ Section -Main SEC0000
     File /oname=COPYING.txt @abs_top_srcdir@/COPYING
     File /oname=readme.txt @abs_top_srcdir@/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File @abs_top_srcdir@/release/hyperstake.exe
-    File @abs_top_srcdir@/release/hyperstake-cli.exe
+    File @abs_top_srcdir@/release/hyperstaked.exe
     SetOutPath $INSTDIR\doc
     File /r @abs_top_srcdir@/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 
-    # Remove old wxwidgets-based-hyperstake executable and locales:
+    # Remove old wxwidgets-based-bitcoin executable and locales:
     Delete /REBOOTOK $INSTDIR\hyperstake.exe
     RMDir /r /REBOOTOK $INSTDIR\locale
 SectionEnd
@@ -106,8 +105,8 @@ Section -post SEC0001
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" UninstallString $INSTDIR\uninstall.exe
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
-    WriteRegStr HKCR "hyperstake" "URL Protocol" ""
-    WriteRegStr HKCR "hyperstake" "" "URL:hyperstake"
+    WriteRegStr HKCR "" "URL Protocol" ""
+    WriteRegStr HKCR "hyperstake" "" "URL:Hyperstake"
     WriteRegStr HKCR "hyperstake\DefaultIcon" "" $INSTDIR\hyperstake-qt.exe
     WriteRegStr HKCR "hyperstake\shell\open\command" "" '"$INSTDIR\hyperstake-qt.exe" "%1"'
 SectionEnd
@@ -139,7 +138,7 @@ Section -un.post UNSEC0001
     DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk"
-    Delete /REBOOTOK "$SMSTARTUP\hyperstake.lnk"
+    Delete /REBOOTOK "$SMSTARTUP\Hyperstake.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
     Delete /REBOOTOK $INSTDIR\db.log
