@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>About HyperStake</string>
+   <string>About 666Coin</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
@@ -95,6 +95,7 @@
 Copyright © 2009-2012 Bitcoin Developers
 Copyright © 2012 PPCoin Developers
 Copyright © 2014 TruckCoin Developers, Copyright © 2014 HyperStake Developers
+Copyright © 2018 666Coin Developers
 </string>
        </property>
        <property name="textInteractionFlags">

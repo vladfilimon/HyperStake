@@ -93,7 +93,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
 {
     resize(850, 550);
     
-    QString windowTitle = tr("HyperStake") + " - " + tr("Wallet");
+    QString windowTitle = tr("666Coin") + " - " + tr("Wallet");
     windowTitle += " " + networkStyle->getTitleAddText();
 #ifndef Q_OS_MAC
     QApplication::setWindowIcon(networkStyle->getTrayAndWindowIcon());
@@ -266,7 +266,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setToolTip(tr("Send coins to a HyperStake address"));
+    sendCoinsAction->setToolTip(tr("Send coins to a 666Coin address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(sendCoinsAction);
@@ -305,8 +305,8 @@ void BitcoinGUI::createActions()
     quitAction->setToolTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About HyperStake"), this);
-    aboutAction->setToolTip(tr("Show information about HyperStake"));
+    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About 666Coin"), this);
+    aboutAction->setToolTip(tr("Show information about 666Coin"));
     aboutAction->setMenuRole(QAction::AboutRole);
 
     charityAction = new QAction(QIcon(":/icons/s4c"), tr("&MultiSend"), this);
@@ -327,7 +327,7 @@ void BitcoinGUI::createActions()
     aboutQtAction->setToolTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
-    optionsAction->setToolTip(tr("Modify configuration options for HyperStake"));
+    optionsAction->setToolTip(tr("Modify configuration options for 666Coin"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
     toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("&Show / Hide"), this);
     encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
@@ -535,7 +535,7 @@ void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
 {
 #ifndef Q_OS_MAC
     trayIcon = new QSystemTrayIcon(this);
-    QString toolTip = tr("HyperStake client") + " " + networkStyle->getTitleAddText();
+    QString toolTip = tr("666Coin client") + " " + networkStyle->getTitleAddText();
     trayIcon->setToolTip(toolTip);
     trayIcon->setIcon(networkStyle->getTrayAndWindowIcon());
     trayIcon->show();
@@ -630,7 +630,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to HyperStake network", "", count));
+    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to 666Coin network", "", count));
 }
 
 void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
@@ -940,7 +940,7 @@ void BitcoinGUI::dropEvent(QDropEvent *event)
         if (nValidUrisFound)
             gotoSendCoinsPage();
         else
-            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid HyperStake address or malformed URI parameters."));
+            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid 666Coin address or malformed URI parameters."));
     }
 
     event->acceptProposedAction();
@@ -955,7 +955,7 @@ void BitcoinGUI::handleURI(QString strURI)
         gotoSendCoinsPage();
     }
     else
-        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid HyperStake address or malformed URI parameters."));
+        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid 666Coin address or malformed URI parameters."));
 }
 
 void BitcoinGUI::setEncryptionStatus(int status)

@@ -78,7 +78,7 @@ bool fWalletStaking = false;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "HyperStake Signed Message:\n";
+const string strMessageMagic = "666Coin Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -985,8 +985,9 @@ int64 GetProofOfWorkReward(int nHeight, int64 nFees, uint256 prevHash)
 int64 GetProofOfStakeReward(int64 nCoinAge, unsigned int nBits, unsigned int nTime, int nHeight)
 {
 	int64 nSubsidy = 0;
-	
-	if ( nTime > FORK_TIME )
+	if ( nTime > FORK_TIME3)
+		nSubsidy = GetProofOfStakeRewardV3(nCoinAge, nBits, nTime,nHeight);
+	else if ( nTime > FORK_TIME )
 		nSubsidy = GetProofOfStakeRewardV2(nCoinAge, nBits, nTime,nHeight);
 	else
 		nSubsidy = GetProofOfStakeRewardV1(nCoinAge, nBits, nTime, nHeight);
@@ -1020,6 +1021,22 @@ int64 GetProofOfStakeRewardV2(int64 nCoinAge, unsigned int nBits, unsigned int n
 		
 	nSubsidy = min(nSubsidy, nSubsidyLimit);
 	 
+    return nSubsidy;
+}
+
+int64 GetProofOfStakeRewardV3(int64 nCoinAge, unsigned int nBits, unsigned int nTime, int nHeight)
+{
+    int64 nRewardCoinYear, nSubsidyLimit = 1000 * COIN;
+
+	nRewardCoinYear = MAX_MINT_PROOF_OF_STAKEV3;
+
+    int64 nSubsidy = nCoinAge * nRewardCoinYear / 365;
+
+	if (fDebug && GetBoolArg("-printcreation"))
+        printf("GetProofOfStakeReward(): create=%s nCoinAge=%lld nBits=%d\n", FormatMoney(nSubsidy).c_str(), nCoinAge, nBits);
+
+	nSubsidy = min(nSubsidy, nSubsidyLimit);
+
     return nSubsidy;
 }
 
@@ -2537,7 +2554,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low!");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "HyperStake", CClientUIInterface::OK | CClientUIInterface::ICON_ETRKLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "666Coin", CClientUIInterface::OK | CClientUIInterface::ICON_ETRKLAMATION | CClientUIInterface::MODAL);
         StartShutdown();
         return false;
     }

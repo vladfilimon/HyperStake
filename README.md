@@ -1,5 +1,6 @@
-# HyperStake
+# 666Coin
 
+Copyright (c) 2018 666Coin Developers
 Copyright (c) 2013-2017 HyperStake Developers
 Copyright (c) 2013 NovaCoin Developers
 Copyright (c) 2011-2012 Bitcoin Developers
@@ -12,6 +13,7 @@ cryptographic software written by Eric Young (eay@cryptsoft.com).
 
 Intro
 -----
+666Coin is a fork of HyperStake
 HyperStake is a free open source project derived from NovaCoin, with
 the goal of providing a long-term energy-efficient Proof of Stake based crypto-currency.
 Built on the foundation of Bitcoin and NovaCoin, innovations such as proof-of-stake
@@ -20,8 +22,8 @@ help further advance the field of crypto-currency.
 Setup
 -----
 Unpack the files into a directory and run:
- bin/32/hyperstaked (headless, 32-bit)
- bin/64/hyperstaked (headless, 64-bit)
+ bin/32/666coind (headless, 32-bit)
+ bin/64/666coind (headless, 64-bit)
 
 The software automatically finds other nodes to connect to.  You can
 enable Universal Plug and Play (UPnP) with your router/firewall
@@ -35,17 +37,17 @@ Upgrade
 -------
 All you existing coins/transactions should be intact with the upgrade.
 To upgrade first backup wallet
-hyperstaked backupwallet <destination_backup_file>
+666coind backupwallet <destination_backup_file>
 Then shutdown hyperstaked by
-hyperstaked stop
-Start up the new hyperstaked.
+666coind stop
+Start up the new 666coind.
 
 
 See the hyperstake site:
   http://hyperstake.io
 for help and more information.
 
-Wallet themes
+Wallet themes (All from HyperStake)
 -------
 
 | HyperBlue     | PoloniexNight | PoloniexDay   |

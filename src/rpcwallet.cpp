@@ -143,7 +143,7 @@ Value getnewaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getnewaddress [account]\n"
-            "Returns a new HyperStake address for receiving payments.  "
+            "Returns a new 666Coin address for receiving payments.  "
             "If [account] is specified (recommended), it is added to the address book "
             "so payments received with the address will be credited to [account].");
 
@@ -209,7 +209,7 @@ Value getaccountaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() != 1)
         throw runtime_error(
             "getaccountaddress <account>\n"
-            "Returns the current HyperStake address for receiving payments to this account.");
+            "Returns the current 666Coin address for receiving payments to this account.");
 
     // Parse the account first so we don't generate a key if there's an error
     string strAccount = AccountFromValue(params[0]);
@@ -225,12 +225,12 @@ Value setaccount(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "setaccount <HyperStakeaddress> <account>\n"
+            "setaccount <666CoinAddress> <account>\n"
             "Sets the account associated with the given address.");
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HyperStake address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 666Coin address");
 
 
     string strAccount;
@@ -254,12 +254,12 @@ Value getaccount(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "getaccount <HyperStakeaddress>\n"
+            "getaccount <666CoinAddress>\n"
             "Returns the account associated with the given address.");
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HyperStake address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 666Coin address");
 
     string strAccount;
     map<CTxDestination, string>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
@@ -293,13 +293,13 @@ Value sendtoaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-		"sendtoaddress <HyperStakeaddress> <amount> [comment] [comment-to]\n"
+		"sendtoaddress <666Coinaddress> <amount> [comment] [comment-to]\n"
             "<amount> is a real and is rounded to the nearest 0.000001"
             + HelpRequiringPassphrase());
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HyperStake address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 666Coin address");
 
     // Amount
     int64 nAmount = AmountFromValue(params[1]);
@@ -359,7 +359,7 @@ Value signmessage(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw runtime_error(
-            "signmessage <HyperStakeaddress> <message>\n"
+            "signmessage <666Coinaddress> <message>\n"
             "Sign a message with the private key of an address");
 
     EnsureWalletIsUnlocked();
@@ -394,7 +394,7 @@ Value verifymessage(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 3)
         throw runtime_error(
-            "verifymessage <HyperStakeaddress> <signature> <message>\n"
+            "verifymessage <666Coinaddress> <signature> <message>\n"
             "Verify a signed message");
 
     string strAddress  = params[0].get_str();
@@ -430,14 +430,14 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "getreceivedbyaddress <HyperStakeaddress> [minconf=1]\n"
-            "Returns the total amount received by <HyperStakeaddress> in transactions with at least [minconf] confirmations.");
+            "getreceivedbyaddress <666Coinaddress> [minconf=1]\n"
+            "Returns the total amount received by <666Coinaddress> in transactions with at least [minconf] confirmations.");
 
     // Bitcoin address
     CBitcoinAddress address = CBitcoinAddress(params[0].get_str());
     CScript scriptPubKey;
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HyperStake address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 666Coin address");
     scriptPubKey.SetDestination(address.Get());
     if (!IsMine(*pwalletMain,scriptPubKey))
         return (double)0.0;
@@ -670,14 +670,14 @@ Value sendfrom(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 3 || params.size() > 6)
         throw runtime_error(
-		"sendfrom <fromaccount> <toHyperStakeaddress> <amount> [minconf=1] [comment] [comment-to]\n"
+		"sendfrom <fromaccount> <to666Coinaddress> <amount> [minconf=1] [comment] [comment-to]\n"
             "<amount> is a real and is rounded to the nearest 0.000001"
             + HelpRequiringPassphrase());
 
     string strAccount = AccountFromValue(params[0]);
     CBitcoinAddress address(params[1].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HyperStake address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 666Coin address");
     int64 nAmount = AmountFromValue(params[2]);
 
     if (nAmount < MIN_TXOUT_AMOUNT)
@@ -737,7 +737,7 @@ Value sendmany(const Array& params, bool fHelp)
     {
         CBitcoinAddress address(s.name_);
         if (!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid HyperStake address: ")+s.name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid 666Coin address: ")+s.name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, string("Invalid parameter, duplicated address: ")+s.name_);
@@ -784,7 +784,7 @@ Value addmultisigaddress(const Array& params, bool fHelp)
     {
         string msg = "addmultisigaddress <nrequired> <'[\"key\",\"key\"]'> [account]\n"
             "Add a nrequired-to-sign multisignature address to the wallet\"\n"
-            "each key is a HyperStake address or hex-encoded public key\n"
+            "each key is a 666Coin address or hex-encoded public key\n"
             "If [account] is specified, assign address to [account].";
         throw runtime_error(msg);
     }
@@ -1593,7 +1593,7 @@ Value encryptwallet(const Array& params, bool fHelp)
     // slack space in .dat files; that is bad if the old data is
     // unencrypted private keys. So:
     StartShutdown();
-    return "wallet encrypted; HyperStake server stopping, restart to run with encrypted wallet.  The keypool has been flushed, you need to make a new backup.";
+    return "wallet encrypted; 666Coin server stopping, restart to run with encrypted wallet.  The keypool has been flushed, you need to make a new backup.";
 }
 
 class DescribeAddressVisitor : public boost::static_visitor<Object>
@@ -1635,8 +1635,8 @@ Value validateaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "validateaddress <HyperStakeaddress>\n"
-            "Return information about <HyperStakeaddress>.");
+            "validateaddress <666Coinaddress>\n"
+            "Return information about <666Coinaddress>.");
 
     CBitcoinAddress address(params[0].get_str());
     bool isValid = address.IsValid();
@@ -1664,8 +1664,8 @@ Value validatepubkey(const Array& params, bool fHelp)
 {
     if (fHelp || !params.size() || params.size() > 2)
         throw runtime_error(
-            "validatepubkey <HyperStakepubkey>\n"
-            "Return information about <HyperStakepubkey>.");
+            "validatepubkey <666Coinpubkey>\n"
+            "Return information about <666Coinpubkey>.");
 
     std::vector<unsigned char> vchPubKey = ParseHex(params[0].get_str());
     CPubKey pubKey(vchPubKey);
@@ -1823,7 +1823,7 @@ Value makekeypair(const Array& params, bool fHelp)
     return result;
 }
 
-/** HyperStake Specific RPC Wallet Additions**/
+/** 666Coin Specific RPC Wallet Additions**/
 
 //presstab
 double GetMoneySupply(int nHeight)
@@ -1951,7 +1951,7 @@ Value moneysupply(const Array& params, bool fHelp)
 	return obj;
 }
 
-//presstab HyperStake
+//presstab 666Coin
 Value getstaketx(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -2010,7 +2010,7 @@ Value getstaketx(const Array& params, bool fHelp)
     return entry;
 }
 
-//presstab HyperStake
+//presstab 666Coin
 double getWeight()
 {
 	std::vector<COutput> vCoins;
@@ -2036,7 +2036,7 @@ double getWeight()
 	return (double)nWeightSum;
 }
 
-//presstab HyperStake
+//presstab 666Coin
 Value getweight(const Array& params, bool fHelp)
 {
 	if (fHelp)
@@ -2047,7 +2047,7 @@ Value getweight(const Array& params, bool fHelp)
 	return getWeight();
 }
 
-//presstab HyperStake
+//presstab 666Coin
 Value getpotentialstake(const Array& params, bool fHelp)
 {
 	 if (fHelp)
@@ -2073,7 +2073,7 @@ Value getpotentialstake(const Array& params, bool fHelp)
 	return nRewardSum;
 }
 
-// presstab HyperStake
+// presstab 666Coin
 Value setstakesplitthreshold(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -2106,7 +2106,7 @@ Value setstakesplitthreshold(const Array& params, bool fHelp)
 	}
 }
 
-// presstab HyperStake
+// presstab 666Coin
 Value getstakesplitthreshold(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
@@ -2120,7 +2120,7 @@ Value getstakesplitthreshold(const Array& params, bool fHelp)
 
 }
 
-// presstab HyperStake
+// presstab 666Coin
 Value disablestake(const Array& params, bool fHelp)
 {
     if (fHelp || params.size()  > 4 || params.size() < 1)
@@ -2169,7 +2169,7 @@ Value disablestake(const Array& params, bool fHelp)
 	return result;
 }
 
-// presstab HyperStake
+// presstab 666Coin
 Value rescanfromblock(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -2186,7 +2186,7 @@ Value rescanfromblock(const Array& params, bool fHelp)
 	return "done";
 }
 
-// presstab HyperStake
+// presstab 666Coin
 Value cclistcoins(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
@@ -2229,7 +2229,7 @@ Value cclistcoins(const Array& params, bool fHelp)
 }
 
 
-// presstab HyperStake
+// presstab 666Coin
 Value ccselect(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
@@ -2246,7 +2246,7 @@ Value ccselect(const Array& params, bool fHelp)
 	return "Outpoint Selected";
 }
 
-// presstab HyperStake
+// presstab 666Coin
 Value cclistselected(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
@@ -2266,7 +2266,7 @@ Value cclistselected(const Array& params, bool fHelp)
 	return result;
 }
 
-// ssta HyperStake
+// ssta 666Coin
 Value ccreturnchange(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -2285,7 +2285,7 @@ Value ccreturnchange(const Array& params, bool fHelp)
     return ret;
 }
 
-// ssta HyperStake
+// ssta 666Coin
 Value cccustomchange(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -2294,7 +2294,7 @@ Value cccustomchange(const Array& params, bool fHelp)
                         "CoinControl: sets address to return change to");
     CBitcoinAddress address(params[0].get_str());
     // check it's a valid address
-    if(!address.IsValid()) throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid HyperStake address");
+    if(!address.IsValid()) throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid 666Coin address");
 
     coinControl->destChange=address.Get();
 
@@ -2319,7 +2319,7 @@ Value ccsend(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw runtime_error(
-		"ccsend <HyperStakeaddress> <amount>\n"
+		"ccsend <666Coinaddress> <amount>\n"
             "<amount> is a real and is rounded to the nearest 0.000001"
             + HelpRequiringPassphrase());
 
@@ -2327,7 +2327,7 @@ Value ccsend(const Array& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HyperStake address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 666Coin address");
 
     // Amount
     int64 nAmount = AmountFromValue(params[1]);
@@ -2581,7 +2581,7 @@ Value multisend(const Array &params, bool fHelp)
 			
 			"****************************************************************\n"
 			"TO CREATE OR ADD TO THE MULTISEND VECTOR:\n"
-			"multisend <HyperStake Address> <percent>\n"
+			"multisend <666Coin Address> <percent>\n"
             "This will add a new address to the MultiSend vector\n"
             "Percent is a whole number 1 to 100.\n"
 			"****************************************************************\n"
@@ -2591,7 +2591,7 @@ Value multisend(const Array &params, bool fHelp)
 	string strAddress = params[0].get_str();
     CBitcoinAddress address(strAddress);
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HyperStake address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 666Coin address");
     if (boost::lexical_cast<int>(params[1].get_str()) < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, expected valid percentage");
     if (pwalletMain->IsLocked())

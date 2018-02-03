@@ -31,12 +31,12 @@ bool AppInit(int argc, char* argv[])
         if (mapArgs.count("-?") || mapArgs.count("--help"))
         {
             // First part of help message is specific to bitcoind / RPC client
-            std::string strUsage = _("HyperStake version") + " " + FormatFullVersion() + "\n\n" +
+            std::string strUsage = _("666Coin version") + " " + FormatFullVersion() + "\n\n" +
             _("Usage:") + "\n" +
-            "  HyperStaked [options]                     " + "\n" +
-            "  HyperStaked [options] <command> [params]  " + _("Send command to -server or HyperStaked") + "\n" +
-            "  HyperStaked [options] help                " + _("List commands") + "\n" +
-            "  HyperStaked [options] help <command>      " + _("Get help for a command") + "\n";
+            "  666Coin [options]                     " + "\n" +
+            "  666Coin [options] <command> [params]  " + _("Send command to -server or 666Coin") + "\n" +
+            "  666Coin [options] help                " + _("List commands") + "\n" +
+            "  666Coin [options] help <command>      " + _("Get help for a command") + "\n";
             
             strUsage += "\n" + HelpMessage();
             
@@ -46,7 +46,7 @@ bool AppInit(int argc, char* argv[])
         
         // Command-line RPC
         for (int i = 1; i < argc; i++)
-            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "HyperStake:"))
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "666Coin:"))
                 fCommandLine = true;
         
         if (fCommandLine)

@@ -34,7 +34,7 @@ SendCoinsDialog::SendCoinsDialog(QWidget *parent) :
 
 #if QT_VERSION >= 0x040700
      /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-     ui->lineEditCoinControlChange->setPlaceholderText(tr("Enter a HyperStake address (e.g. pAvP3gYfuyDVbUt98ToMbwU9rwEdBV1dHW)"));
+     ui->lineEditCoinControlChange->setPlaceholderText(tr("Enter a 666Coin address (e.g. pAvP3gYfuyDVbUt98ToMbwU9rwEdBV1dHW)"));
 	 ui->splitBlockLineEdit->setPlaceholderText(tr("# of Blocks"));
 	 ui->splitBlockCheckBox->setToolTip(tr("Enable/Disable Block Splitting"));
 	 ui->returnChangeCheckBox->setToolTip(tr("Use your sending address as the change address"));
@@ -586,7 +586,7 @@ void SendCoinsDialog::splitBlockLineEditChanged(const QString & text)
          {
              ui->labelCoinControlChangeLabel->setProperty("error", true);
              ui->labelCoinControlChangeLabel->style()->polish(ui->labelCoinControlChangeLabel);
-             ui->labelCoinControlChangeLabel->setText(tr("WARNING: Invalid HyperStake address"));
+             ui->labelCoinControlChangeLabel->setText(tr("WARNING: Invalid 666Coin address"));
          }
          else
          {
