@@ -1,3 +1,6 @@
+# Rebranding work
+I am keeping this repository to serve as an example on cryptocurrency rebranding.
+
 # 666Coin
 
 Copyright (c) 2018 666Coin Developers
